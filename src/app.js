@@ -1,5 +1,7 @@
+require('dotenv').config();
 var express = require('express');
 var app = express();
+var serverPort = process.env.SERVER_PORT
 
 const keycloak = require('./config/keycloak-config.js').initKeycloak();
 app.use(keycloak.middleware());
@@ -11,6 +13,6 @@ app.get('/', function(req, res){
    res.send("Server is up!");
 });
 
-app.listen(3000, function () {
-  console.log('Started at port 3000');
+app.listen(serverPort, function () {
+  console.log(`Started at port ${serverPort}`);
 });
